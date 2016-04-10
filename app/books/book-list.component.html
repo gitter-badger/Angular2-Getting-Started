@@ -1,26 +1,29 @@
 <h3>{{pageTitle}}</h3>
 
-<p><input type="text" /></p>
+<p><input type="text" [(ngModel)]='bookFilter' (keyup)='FilterBooks(bookFilter,$event)' /></p>
 
-<p>Filtered By:</p>
+<p>Filtered By: {{bookFilter}}</p>
 
-<div *ngIf="!books.length">You've got no books, man.</div>
+<div *ngIf="!filteredBooks.length">You've got no books, man.</div>
 
-<div *ngIf="books.length">You've got {{books.length}} books, man.</div>
+<div *ngIf="filteredBooks.length">You've got {{books.length}} books, man.</div>
 
-<table *ngIf="books.length">
+<table *ngIf="filteredBooks.length">
     <thead>      
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Rating</th>
-    </tr>  
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Release Date</th>
+            <th>Rating</th>
+        </tr>  
     </thead>  
     <tbody>
-    <tr *ngFor="#book of books">
-        <td>{{book.BookName}}</td>
-        <td>{{book.Price}}</td>
-        <td>{{book.StarRating}}</td>
-    </tr>
+        <tr *ngFor="#book of filteredBooks">
+            <td [innerHtml]='book.BookName'></td>
+            <td [innerHtml]='book.ISBN | uppercase'></td>
+            <td [innerHtml]='book.Price | currency'></td>
+            <td [innerHtml]='book.ReleaseDate'></td>
+            <td [innerHtml]='book.StarRating'></td>
+        </tr>
     </tbody>
 <table>
