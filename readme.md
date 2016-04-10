@@ -1,5 +1,3 @@
-/*
-
 Taken from - https://angular.io/docs/ts/latest/quickstart.html
 
 OK then to get started, we need to create these files:
@@ -12,7 +10,3 @@ Then....
 
 npm install
 npm start
-
-
-
-*/
