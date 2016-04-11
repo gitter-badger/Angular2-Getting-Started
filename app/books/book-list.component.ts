@@ -35,12 +35,7 @@ export class BookListComponent {
             this.ResetFilter();
         }    
         else if (searchTerm.length >= 3) {  
-            this.filteredBooks = [];  
-            this.books.forEach(book => {                              
-                if(book.BookName.toLowerCase().indexOf(searchTerm) > -1) {
-                    this.filteredBooks.push(book);
-                }               
-            });        
+            this.filteredBooks = this._bookService.SearchBooks(searchTerm);
         }
     };
 }

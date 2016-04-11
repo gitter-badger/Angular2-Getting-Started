@@ -3,7 +3,7 @@ import {Book} from './book';
 
 @Injectable()
 export class BookService {
-  GetAll() {
+  GetAll(): Book[] {
     return [
         {
             "BookId": 1,
@@ -39,6 +39,19 @@ export class BookService {
         }
     ];
   }
+  
+  SearchBooks(searchTerm: string): Book[] {
+    //  Reset the book list
+    let _books: Book[] = this.GetAll();
+    let _returnedBooks: Book[] = [];
+    _books.forEach(b => {                              
+        if(b.BookName.toLowerCase().indexOf(searchTerm) > -1) {
+            _returnedBooks.push(b);
+        }               
+    });  
+    return _returnedBooks;    
+  }
+  
 }
 
 
