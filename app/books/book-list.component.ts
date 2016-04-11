@@ -14,7 +14,7 @@ export class BookListComponent {
     bookFilter: string = '';   
     filteredBooks: Book[] = [];  
 
-    //  The list of books from the service by calling the constructor on the book object
+    //  Inject the dependency of the BookService into the component to make available
     constructor(private _bookService: BookService) { }
     books: Book[] = this._bookService.GetAll();
     
