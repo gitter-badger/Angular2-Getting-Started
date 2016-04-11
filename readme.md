@@ -1,12 +1,10 @@
-Taken from - https://angular.io/docs/ts/latest/quickstart.html
+Taken from and based on the following resources...... 
 
-OK then to get started, we need to create these files:
+https://angular.io/docs/ts/latest/quickstart.html
+https://app.pluralsight.com/library/courses/angular-2-getting-started/table-of-contents
 
-package.json
-tsconfig.json
-typings.json
-
-Then....
+To get going, you just need to do this......
 
 npm install
 npm start
+
