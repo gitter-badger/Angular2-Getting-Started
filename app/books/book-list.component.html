@@ -4,11 +4,11 @@
 
 <p>Filtered By: {{bookFilter}}</p>
 
-<div *ngIf="!filteredBooks.length">You've got no books, man.</div>
+<div *ngIf="!books.length">You've got no books, man.</div>
 
-<div *ngIf="filteredBooks.length">You've got {{books.length}} books, man.</div>
+<div *ngIf="books.length">You've got {{books.length}} books, man.</div>
 
-<table *ngIf="filteredBooks.length">
+<table *ngIf="books.length">
     <thead>      
         <tr>
             <th>Name</th>
@@ -18,7 +18,7 @@
         </tr>  
     </thead>  
     <tbody>
-        <tr *ngFor="#book of filteredBooks">
+        <tr *ngFor="#book of books">
             <td [innerHtml]='book.BookName'></td>
             <td [innerHtml]='book.ISBN | uppercase'></td>
             <td [innerHtml]='book.Price | currency'></td>
