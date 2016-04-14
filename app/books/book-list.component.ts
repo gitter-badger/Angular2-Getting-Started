@@ -39,7 +39,10 @@ export class BookListComponent {
         this.http.get('http://localhost:3001/search/' + searchTerm)
             .map(res => res.json())
             .subscribe(_books => this.books = _books); 
-        };
+        }
+        else if (!searchTerm) {
+            this.ResetFilter();
+        }
     };
 }
 

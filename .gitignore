@@ -2,9 +2,10 @@
 
 # This is going to be 100% typescript.....for now, so lets get rid of the typings, js, maps 
 # and shit that will be build as we initialise our project. We might need to add back in later ;)
-*.js
 *.map
 *.d.ts
+*.js
+!server/*.js
 
 # Build and distribution
 build

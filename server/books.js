@@ -40,7 +40,7 @@ module.exports = function(app){
     });
     
     app.get('/search/:searchTerm', function(req, res){
-        let _returnedBooks = [];
+        var _returnedBooks = [];
         books.forEach(b => {                              
             if(b.BookName.toLowerCase().indexOf(req.params.searchTerm) > -1) {
                 _returnedBooks.push(b);
