@@ -13,14 +13,11 @@ export class BookListComponent {
     
     //  Setup the privates here
     pageTitle: string  = 'Here\'s the book list that I promised.'; 
-    _bookService: BookService;
     books: Book[] = [];  
     
     //  Inject the dependency of the BookService into the component to make available, i love how this mirrors
     //  dependency injection in c# almost exactly :)
-    constructor(private _serv: BookService, private http : Http) { 
-       this._bookService = _serv;
-    };
+    constructor(private _bookService: BookService, private http : Http) { };
     
     //  By default set the filtered books to be the book list and create a function to reset at any time
     ResetFilter = () :void => {
