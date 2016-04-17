@@ -26,7 +26,6 @@ export class BookListComponent {
     //  By default set the filtered books to be the book list and create a function to reset at any time
     ResetFilter = () :void => {
         this._bookService.GetAll()
-            .map(res => res.json())
             .subscribe(
                 data => {  this.books = data},
                 err => console.error(err),
@@ -44,7 +43,6 @@ export class BookListComponent {
     FilterBooks = (searchTerm: string, event: KeyboardEvent) :void =>  {  
         if (searchTerm.length > 3) {   
         this._bookService.Search(searchTerm)
-            .map((res:Response) => res.json())
             .subscribe(
                 data => { this.books = data},
                 err => console.error(err),

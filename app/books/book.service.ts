@@ -13,11 +13,11 @@ export class BookService {
     
     //  By default set the filtered books to be the book list and create a function to reset at any time
     GetAll() {
-        return this.http.get('http://localhost:3001/');
+        return this.http.get('http://localhost:3001/').map(res => res.json());
     };    
     
     Search(searchTerm: string) {
-        return this.http.get('http://localhost:3001/search/' + searchTerm);
+        return this.http.get('http://localhost:3001/search/' + searchTerm).map(res => res.json());
     };    
     
 }
