@@ -1,57 +1,25 @@
 import {Injectable} from 'angular2/core';
 import {Book} from './book';
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
 
 @Injectable()
 export class BookService {
-//   GetAll(): Book[] {
-//     return [
-//         {
-//             "BookId": 1,
-//             "BookName": "The Blade Itself",
-//             "ISBN": "ISBN-99921-58-10-7",
-//             "ReleaseDate": "March 19, 2016",
-//             "Price": 10.95,
-//             "StarRating": 5.0
-//         },
-//         {
-//             "BookId": 2,
-//             "BookName": "Harry Potter and the Deathly Hallows",
-//             "ISBN": "isbn-99921-58-10-7",
-//             "ReleaseDate": "March 18, 2016",
-//             "Price": 3.99,
-//             "StarRating": 4.2
-//         },
-//         {
-//             "BookId": 3,
-//             "BookName": "The Damned United",
-//             "ISBN": "isbn-99921-58-10-7",
-//             "ReleaseDate": "May 21, 2016",
-//             "Price": 9.99,
-//             "StarRating": 4.8
-//         },
-//         {
-//             "BookId": 4,
-//             "BookName": "A Feast For Crows",
-//             "ISBN": "Isbn-99921-58-10-7",
-//             "ReleaseDate": "May 15, 2016",
-//             "Price": 11.99,
-//             "StarRating": 4.5
-//         }
-//     ];
-//   }
-  
-//   SearchBooks(searchTerm: string): Book[] {
-//     //  Reset the book list
-//     let _books: Book[] = this.GetAll();
-//     let _returnedBooks: Book[] = [];
-//     _books.forEach(b => {                              
-//         if(b.BookName.toLowerCase().indexOf(searchTerm) > -1) {
-//             _returnedBooks.push(b);
-//         }               
-//     });  
-//     return _returnedBooks;    
-//   }
-  
+    
+    Books: Book[] = [];  
+
+    //  Inject the dependency of the BookService into the component to make available,
+    //  I would put this into it's own method - but this is a 'startup' i guess for now
+    constructor(private http : Http) { };
+    
+    //  By default set the filtered books to be the book list and create a function to reset at any time
+    GetAll() {
+        return this.http.get('http://localhost:3001/');
+    };    
+    
+    Search(searchTerm: string) {
+        return this.http.get('http://localhost:3001/search/' + searchTerm);
+    };    
+    
 }
 
 
