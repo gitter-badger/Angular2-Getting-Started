@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {Book} from './book';
 import {BookService} from './book.service';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Http, HTTP_PROVIDERS, Response} from 'angular2/http';
 import 'rxjs/Rx';
 
 @Component({
@@ -19,11 +19,19 @@ export class BookListComponent {
     //  dependency injection in c# almost exactly :)
     constructor(private _bookService: BookService, private http : Http) { };
     
+    completeHook = (n) => {
+        console.log(n);
+    };
+    
     //  By default set the filtered books to be the book list and create a function to reset at any time
     ResetFilter = () :void => {
         this._bookService.GetAll()
             .map(res => res.json())
-            .subscribe(_books => this.books = _books);    
+            .subscribe(
+                data => {  this.books = data},
+                err => console.error(err),
+                () => this.completeHook(1)
+            ); 
     };
     
     ngOnInit() {
@@ -36,8 +44,13 @@ export class BookListComponent {
     FilterBooks = (searchTerm: string, event: KeyboardEvent) :void =>  {  
         if (searchTerm.length > 3) {   
         this._bookService.Search(searchTerm)
-            .map(res => res.json())
-            .subscribe(_books => this.books = _books); 
+            .map((res:Response) => res.json())
+            .subscribe(
+                data => { this.books = data},
+                err => console.error(err),
+                () => this.completeHook(2)
+            );
+            //.subscribe(_books => this.books = _books); 
         }
         else if (!searchTerm) {
             this.ResetFilter();
